@@ -1,3 +1,5 @@
+import "./index.scss";
+
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
