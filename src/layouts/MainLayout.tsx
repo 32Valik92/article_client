@@ -4,6 +4,7 @@ import {Outlet} from "react-router-dom";
 
 import {Header} from "../components";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface IProps {
 
 }
