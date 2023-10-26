@@ -4,8 +4,9 @@ export interface IPost {
   _id?: string
   title: string;
   text: string;
-  tags: string;
+  tags: string[];
   viewsCount?: number;
   user?: IUser;
-  imageUrl?: string;
+  imageURL?: string;
+  createdAt?: string;
 }

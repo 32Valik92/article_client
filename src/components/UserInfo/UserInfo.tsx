@@ -3,15 +3,20 @@ import React from "react";
 
 import styles from "./UserInfo.module.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface IProps {
-
+    avatarUrl?: string
+    fullName?: string
+    additionalText?: string
 }
 
-const UserInfo: FC<IProps> = () => {
+const UserInfo: FC<IProps> = ({ avatarUrl, fullName, additionalText }) => {
    return (
-      <div>
-            UserInfo
+      <div className={styles.root}>
+         <img className={styles.avatar} src={avatarUrl} alt={fullName} />
+         <div className={styles.userDetails}>
+            <span className={styles.userName}>{fullName}</span>
+            <span className={styles.additional}>{additionalText}</span>
+         </div>
       </div>
    );
 };

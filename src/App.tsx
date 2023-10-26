@@ -1,12 +1,18 @@
 import {Container} from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 
+import {useAppDispatch} from "./hooks";
 import {MainLayout} from "./layouts";
 import {AddPost, FullPost, Home, Login, Registration} from "./pages";
+import {authActions} from "./redux";
 
 const App = () => {
+   const dispatch = useAppDispatch();
 
+   useEffect(() => {
+      dispatch(authActions.fetchAuthMe());
+   }, []);
    return (
       <>
          <Container maxWidth="lg">
