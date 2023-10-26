@@ -1,5 +1,5 @@
 import {urls} from "../constants";
-import {ILogin, ILogRegData, IRegister, IUser} from "../interfaces";
+import {ILogin, ILogRegData, IRegister} from "../interfaces";
 import {IRes} from "../types";
 import {axiosService} from "./axios.service";
 
@@ -12,7 +12,7 @@ class AuthService {
       return axiosService.post(urls.auth.login, params);
    }
 
-   getMe(): IRes<IUser> {
+   getMe(): IRes<ILogRegData> {
       return axiosService.get(urls.auth.me);
    }
 }

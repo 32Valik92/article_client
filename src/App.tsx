@@ -6,6 +6,7 @@ import {MainLayout} from "./layouts";
 import {AddPost, FullPost, Home, Login, Registration} from "./pages";
 
 const App = () => {
+
    return (
       <>
          <Container maxWidth="lg">

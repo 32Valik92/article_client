@@ -7,7 +7,7 @@ export interface ILogRegData {
   email: string;
   password?: string;
   avatarURL: string;
-  tokenPair: ITokenPair;
+  tokenPair?: ITokenPair;
 }
 
 export type ILogin = Pick<IUser, "email" | "password">;

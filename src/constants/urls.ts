@@ -5,6 +5,11 @@ const urls = {
       login: "/auth/login",
       register: "/auth/register",
       me: "/auth/me"
+   },
+   post: {
+      getAll: "/posts",
+      getTags: "/tags",
+      deletePost: (id: string): string => `/posts/${id}`,
    }
 };
 

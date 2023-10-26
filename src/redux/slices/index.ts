@@ -1,2 +1,2 @@
 export * from "./auth.slice";
-// export * from "./posts.slice";
+export * from "./posts.slice";
