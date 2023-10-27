@@ -8,8 +8,11 @@ const urls = {
    },
    post: {
       getAll: "/posts",
-      getTags: "/tags",
+      create: "/posts",
+      getTags: "/posts/tags",
+      byId: (id: string): string => `/posts/${id}`,
       deletePost: (id: string): string => `/posts/${id}`,
+      upload: "/upload"
    }
 };
 

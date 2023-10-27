@@ -96,10 +96,10 @@ const slice = createSlice({
             state.tags.items = [];
             state.tags.status = "error";
          })
-   // Remove Post
-   //    .addCase(fetchRemovePost.pending, (state, action) => {
-   //       state.posts.items = state.posts.items.filter(obj => obj._id !== action.meta.arg);
-   //    })
+      // Remove Post
+         .addCase(fetchRemovePost.pending, (state, action) => {
+            state.posts.items = state.posts.items.filter(obj => obj._id !== action.meta.arg.id);
+         })
 });
 
 const {reducer: postReducer, actions} = slice;

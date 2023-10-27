@@ -2,17 +2,16 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import {FC}  from "react";
 import React from "react";
-import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
-import {useAppDispatch} from "../../hooks";
-import {authActions, selectIsAuth} from "../../redux";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {authActions} from "../../redux";
 import styles from "./Header.module.scss";
 
 const Header: FC = () => {
    const dispatch = useAppDispatch();
-   const isAuth = useSelector(selectIsAuth);
-   
+   const isAuth = Boolean(useAppSelector(state => state.authReducer.data));
+   console.log(isAuth);
    const onClickLogout = (): void => {
       if (window.confirm("Ви точно хочете вийти?")){
          dispatch(authActions.logout());

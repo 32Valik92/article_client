@@ -9,7 +9,7 @@ class AuthService {
    }
 
    register(params: IRegister): IRes<ILogRegData> {
-      return axiosService.post(urls.auth.login, params);
+      return axiosService.post(urls.auth.register, params);
    }
 
    getMe(): IRes<ILogRegData> {
