@@ -4,15 +4,15 @@ import React from "react";
 import styles from "./UserInfo.module.scss";
 
 interface IProps {
-    avatarUrl?: string
+    avatarURL?: string
     fullName?: string
     additionalText?: string
 }
 
-const UserInfo: FC<IProps> = ({ avatarUrl, fullName, additionalText }) => {
+const UserInfo: FC<IProps> = ({ avatarURL, fullName, additionalText }) => {
    return (
       <div className={styles.root}>
-         <img className={styles.avatar} src={avatarUrl} alt={fullName} />
+         <img className={styles.avatar} src={avatarURL} alt={fullName} />
          <div className={styles.userDetails}>
             <span className={styles.userName}>{fullName}</span>
             <span className={styles.additional}>{additionalText}</span>

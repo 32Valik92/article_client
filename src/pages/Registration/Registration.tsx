@@ -5,18 +5,17 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import {FC} from "react";
 import React from "react";
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {Navigate} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {IDataResponceLogin, IRegister} from "../../interfaces";
+import {IDataResponseLogin, IRegister} from "../../interfaces";
 import {authActions} from "../../redux";
 import styles from "./Registration.module.scss";
 
 const Registration: FC = () => {
    const isAuth = Boolean(useAppSelector(state => state.authReducer.data));
    const dispatch = useAppDispatch();
-
 
    const {
       register,
@@ -25,7 +24,7 @@ const Registration: FC = () => {
          errors,
          isValid
       }
-   } = useForm({
+   } = useForm<IRegister>({
       defaultValues: {
          fullName: "Anton",
          email: "vasya@gmail.com",
@@ -34,11 +33,13 @@ const Registration: FC = () => {
       mode: "onChange"
    });
 
-   const onSubmit = async (values:IRegister) => {
-      const data: IDataResponceLogin = await dispatch(authActions.fetchRegister(values));
+   const onSubmit: SubmitHandler<IRegister> = async (values): Promise<void> => {
+      const data: IDataResponseLogin = await dispatch(authActions.fetchRegister(values));
+
       if (!data.payload) {
-         return alert("Не удалось зарегестрироваться");
+         return alert("Failed to register");
       }
+
       if ("token" in data.payload) {
          window.localStorage.setItem("token", data.payload.tokenPair.accessToken);
       }
@@ -51,7 +52,7 @@ const Registration: FC = () => {
    return (
       <Paper classes={{root: styles.root}}>
          <Typography classes={{root: styles.title}} variant="h5">
-               Создание аккаунта
+            Account creation
          </Typography>
          <div className={styles.avatar}>
             <Avatar sx={{width: 100, height: 100}}/>
@@ -59,20 +60,20 @@ const Registration: FC = () => {
          <form onSubmit={handleSubmit(onSubmit)}>
             <TextField error={Boolean(errors.fullName?.message)}
                helperText={errors.fullName?.message}
-               {...register("fullName", {required: "Укажите полное имя"})}
-               className={styles.field} label="Полное имя" fullWidth/>
+               {...register("fullName", {required: "Provide your full name"})}
+               className={styles.field} label="Full name" fullWidth/>
             <TextField error={Boolean(errors.email?.message)}
                helperText={errors.email?.message}
                type='E-Mail'
-               {...register("email", {required: "Укажите почту"})}
+               {...register("email", {required: "Provide your email address"})}
                className={styles.field} label="E-Mail" fullWidth/>
             <TextField error={Boolean(errors.password?.message)}
                helperText={errors.password?.message}
                type='password'
-               {...register("password", {required: "Укажите пароль"})}
-               className={styles.field} label="Пароль" fullWidth/>
+               {...register("password", {required: "Enter your password"})}
+               className={styles.field} label="Password" fullWidth/>
             <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
-                   Войти
+               Registration
             </Button>
          </form>
       </Paper>

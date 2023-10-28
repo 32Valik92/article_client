@@ -10,7 +10,7 @@ export interface ILogRegData {
   tokenPair?: ITokenPair;
 }
 
-export interface IDataResponceLogin{
+export interface IDataResponseLogin{
   meta:{
     arg: ILogin
     requestId: string;

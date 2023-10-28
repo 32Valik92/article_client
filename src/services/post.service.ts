@@ -1,5 +1,5 @@
 import {urls} from "../constants";
-import {IPost} from "../interfaces";
+import {IPost, IPostFields} from "../interfaces";
 import {IRes} from "../types";
 import {axiosService} from "./axios.service";
 
@@ -20,15 +20,15 @@ class PostService {
       return axiosService.get(urls.post.byId(postId));
    }
 
-   uploadImg(formData:any): IRes<any> {
+   uploadImg(formData: FormData): IRes<{url: string}> {
       return axiosService.post(urls.post.upload, formData);
    }
 
-   updateById(postId: string, fields: any): IRes<IPost> {
+   updateById(postId: string, fields: IPostFields): IRes<IPost> {
       return axiosService.patch(urls.post.byId(postId), fields);
    }
 
-   create(fields: any): IRes<IPost> {
+   create(fields: IPostFields): IRes<IPost> {
       return axiosService.post(urls.post.create, fields);
    }
 }

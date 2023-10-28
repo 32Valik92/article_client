@@ -11,9 +11,9 @@ import styles from "./Header.module.scss";
 const Header: FC = () => {
    const dispatch = useAppDispatch();
    const isAuth = Boolean(useAppSelector(state => state.authReducer.data));
-   console.log(isAuth);
+
    const onClickLogout = (): void => {
-      if (window.confirm("Ви точно хочете вийти?")){
+      if (window.confirm("Are you sure you want to leave??")){
          dispatch(authActions.logout());
          window.localStorage.removeItem("token");
       }
@@ -24,25 +24,25 @@ const Header: FC = () => {
          <Container maxWidth="lg">
             <div className={styles.inner}>
                <Link className={styles.logo} to="/">
-                  <div>ARTICLES</div>
+                  <div>HOME ARTICLES</div>
                </Link>
                <div className={styles.buttons}>
                   {isAuth ? (
                      <>
                         <Link to="/add-post">
-                           <Button variant="contained">Написать статью</Button>
+                           <Button variant="contained">Write an article</Button>
                         </Link>
                         <Button onClick={onClickLogout} variant="contained" color="error">
-                                   Выйти
+                                   Log out
                         </Button>
                      </>
                   ) : (
                      <>
                         <Link to="/login">
-                           <Button variant="outlined">Войти</Button>
+                           <Button variant="outlined">Log in</Button>
                         </Link>
                         <Link to="/register">
-                           <Button variant="contained">Создать аккаунт</Button>
+                           <Button variant="contained">Registration</Button>
                         </Link>
                      </>
                   )}

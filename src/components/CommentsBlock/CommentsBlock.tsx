@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Skeleton from "@mui/material/Skeleton";
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import React from "react";
 
 import {ICommentUser} from "../../interfaces";
@@ -13,22 +13,22 @@ import {SideBlock} from "../SideBlock/SideBlock";
 
 interface IProps {
     items?: ICommentUser[];
-    children?: any;
+    children?: ReactNode;
     isLoading?: boolean;
 }
 
 const CommentsBlock: FC<IProps> = ({ items, children, isLoading = true }) => {
    return (
-      <SideBlock title="Комментарии">
+      <SideBlock title="Comments">
          <List>
-            {(isLoading ? [...Array(5)] : items).map((obj, index) => (
+            {(isLoading ? [...Array(5)] : items).map((obj: ICommentUser, index: number) => (
                <React.Fragment key={index}>
                   <ListItem alignItems="flex-start">
                      <ListItemAvatar>
                         {isLoading ? (
                            <Skeleton variant="circular" width={40} height={40} />
                         ) : (
-                           <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                           <Avatar alt={obj.user.fullName} src={obj.user.avatarURL} />
                         )}
                      </ListItemAvatar>
                      {isLoading ? (

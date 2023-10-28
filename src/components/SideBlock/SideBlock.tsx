@@ -1,13 +1,13 @@
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, {ReactNode} from "react";
 import {FC} from "react";
 
 import styles from "./SideBlock.module.scss";
 
 interface IProps {
-    title: any
-    children: any
+    title: string;
+    children: ReactNode;
 }
 
 const SideBlock: FC<IProps> = ({ title, children }) => {

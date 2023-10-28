@@ -4,13 +4,14 @@ import Markdown from "react-markdown";
 import {useParams} from "react-router-dom";
 
 import {AddComment,CommentsBlock, Post} from "../../components";
+import {baseURLServer} from "../../constants";
 import {IPost} from "../../interfaces";
 import {postService} from "../../services";
 
 const FullPost: FC = () => {
    const [data, setData] = useState<IPost>();
-   const [isLoading, setLoading] = useState(true);
-   const {postId} = useParams();
+   const [isLoading, setLoading] = useState<boolean>(true);
+   const {postId} = useParams<string>();
    useEffect(() => {
       postService.getById(postId)
          .then(res => {
@@ -18,7 +19,7 @@ const FullPost: FC = () => {
             setLoading(false);
          }).catch(err => {
             console.warn(err);
-            alert("Ошибка при получении статьи");
+            alert("Error while retrieving the article");
 
          });
    }, [postId]);
@@ -26,13 +27,12 @@ const FullPost: FC = () => {
    if (isLoading) {
       return <Post isLoading={isLoading} isFullPost/>;
    }
-   console.log(data.imageURL);
    return (
       <>
          <Post
             _id={data._id}
             title={data.title}
-            imageUrl={data.imageURL ? `http://localhost:4444${data.imageURL}` : ""}
+            imageURL={data.imageURL ? `${baseURLServer}${data.imageURL}` : ""}
             user={data.user}
             createdAt={data.createdAt}
             viewsCount={data.viewsCount}
@@ -49,15 +49,15 @@ const FullPost: FC = () => {
             items={[
                {
                   user: {
-                     fullName: "Вася Пупкин",
-                     avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+                     fullName: "Rafael",
+                     avatarURL: "https://mui.com/static/images/avatar/1.jpg",
                   },
-                  text: "Это тестовый комментарий 555555",
+                  text: "This is a test comment",
                },
                {
                   user: {
-                     fullName: "Иван Иванов",
-                     avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                     fullName: "Leo",
+                     avatarURL: "https://mui.com/static/images/avatar/2.jpg",
                   },
                   text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
                },

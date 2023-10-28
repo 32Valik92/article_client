@@ -4,7 +4,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import IconButton from "@mui/material/IconButton";
 import clsx from "clsx";
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import React from "react";
 import {Link} from "react-router-dom";
 
@@ -19,13 +19,13 @@ interface IProps {
     _id?: string;
     title?: string;
     createdAt?: string;
-    imageUrl?:string;
+    imageURL?:string;
     user?: IUser;
     viewsCount?: number
     commentsCount?: number;
     tags?: string[];
-    children?: any;
-    isFullPost?: any;
+    children?: ReactNode;
+    isFullPost?: boolean;
     isLoading?: boolean;
     isEditable?: boolean;
 }
@@ -34,7 +34,7 @@ const Post: FC<IProps> = ({
    _id,
    title,
    createdAt,
-   imageUrl,
+   imageURL,
    user,
    viewsCount,
    commentsCount,
@@ -45,12 +45,13 @@ const Post: FC<IProps> = ({
    isEditable,
 }) => {
    const dispatch = useAppDispatch();
+
    if (isLoading) {
       return <PostSkeleton/>;
    }
 
-   const onClickRemove = () => {
-      if (window.confirm("Ви точно хочете видалити статью?")){
+   const onClickRemove = (): void => {
+      if (window.confirm("Are you sure you want to delete the article?")){
          dispatch(postActions.fetchRemovePost({id: _id}));
       }
    };
@@ -69,11 +70,11 @@ const Post: FC<IProps> = ({
                </IconButton>
             </div>
          )}
-         {imageUrl && (
+         {imageURL && (
 
             <img
                className={clsx(styles.image, {[styles.imageFull]: isFullPost})}
-               src={imageUrl}
+               src={imageURL}
                alt={title}
             />
          )}
@@ -86,8 +87,8 @@ const Post: FC<IProps> = ({
                   {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
                </h2>
                <ul className={styles.tags}>
-                  {tags.map((name) => (
-                     <li key={name}>
+                  {tags.map((name: string, index: number) => (
+                     <li key={index}>
                         <Link to={`/tag/${name}`}>#{name}</Link>
                      </li>
                   ))}

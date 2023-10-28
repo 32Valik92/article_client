@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import React, {useEffect} from "react";
 
 import {CommentsBlock, Post, TagsBlock} from "../../components";
+import {baseURLServer} from "../../constants";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {IPost} from "../../interfaces";
 import {postActions} from "../../redux";
@@ -29,8 +30,8 @@ const Home = () => {
             value={0}
             aria-label="basic tabs example"
          >
-            <Tab label="Новые"/>
-            <Tab label="Популярные"/>
+            <Tab label="New"/>
+            <Tab label="Popular"/>
          </Tabs>
          <Grid container spacing={4}>
             <Grid xs={8} item>
@@ -42,7 +43,7 @@ const Home = () => {
                         key={index}
                         _id={obj._id}
                         title={obj.title}
-                        imageUrl={obj.imageURL ? `http://localhost:4444${obj.imageURL}` : ""}
+                        imageURL={obj.imageURL ? `${baseURLServer}${obj.imageURL}` : ""}
                         user={obj.user}
                         createdAt={obj.createdAt}
                         viewsCount={obj.viewsCount}
@@ -61,15 +62,15 @@ const Home = () => {
                   items={[
                      {
                         user: {
-                           fullName: "Вася Пупкин",
-                           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+                           fullName: "Rafael",
+                           avatarURL: "https://mui.com/static/images/avatar/1.jpg",
                         },
-                        text: "Это тестовый комментарий",
+                        text: "This is a test comment",
                      },
                      {
                         user: {
-                           fullName: "Иван Иванов",
-                           avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+                           fullName: "Leo",
+                           avatarURL: "https://mui.com/static/images/avatar/2.jpg",
                         },
                         text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
                      },

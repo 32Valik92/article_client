@@ -1,7 +1,7 @@
 export interface ICommentUser{
     user: {
         fullName: string;
-        avatarUrl: string;
+        avatarURL: string;
     },
     text: string;
 }
