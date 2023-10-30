@@ -1,4 +1,4 @@
-const baseURLServer = process.env.REACT_APP_API_URL || "http://localhost:4444";
+const baseURLServer = process.env.REACT_APP_API_URL;
 
 const urls = {
    auth: {
